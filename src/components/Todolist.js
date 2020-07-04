@@ -13,6 +13,7 @@ class Todolist extends Component {
         this.handleChange=this.handleChange.bind(this)
         this.handleSubmit=this.handleSubmit.bind(this)
         this.handleOnclick=this.handleOnclick.bind(this)
+        this.handleTodoChange=this.handleTodoChange.bind(this)
     }
 
     handleChange(event){
@@ -32,6 +33,42 @@ class Todolist extends Component {
         )
         
         
+    }
+
+    handleTodoChange(event,key){
+        const {value} = event.target
+        if(value.length>0){
+            this.setState(
+                (prevState)=>{
+                    const updateditems =  prevState.items.map((item)=>{
+                            if(item.key===key ){
+                                return (
+                                    {
+                                        name:value,
+                                        key:key
+                                    }
+                                )
+
+                            }
+                            return item
+
+                        }
+                    )
+                    
+                    return(
+                        {
+                            items:updateditems,
+                            newitem:{
+                                name:prevState.newitem.name,
+                                key:Date.now()
+                            }
+                        }
+                    )
+                }
+            )
+        }else{
+            this.handleOnclick(key)
+        }
     }
 
     handleSubmit(event){
@@ -73,7 +110,7 @@ class Todolist extends Component {
         <div className="todoListMain">
             <Todosearchbar onSubmit={this.handleSubmit} onChange={this.handleChange} itemval={ this.state.newitem.name }/>
             
-            <Todoitems items={this.state.items} onClick={this.handleOnclick} />
+            <Todoitems items={this.state.items} onClick={this.handleOnclick} onChangeTodo={this.handleTodoChange}/>
         </div>
     )
   }

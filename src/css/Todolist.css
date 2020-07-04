@@ -40,5 +40,15 @@
     position: absolute;
     right: 10px;
     cursor: pointer;
-
   }
+  
+ ul li input {
+   background-color: transparent;
+   border: 0;
+   color:whitesmoke;
+   font-size: 18px;
+ }
+
+ ul li input:focus {
+   outline: none;
+ }

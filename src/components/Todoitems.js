@@ -5,9 +5,8 @@ const Todoitems = (props) =>{
     if(props.items.length>0){
         const todoitemlist=props.items.map((item)=>{
             return (
-            <li 
-                key={item.key} 
-            >{item.name}
+            <li>
+                <input key={item.key} value={item.name} onChange={(event)=>props.onChangeTodo(event,item.key)} />
             <span>
                    <FontAwesomeIcon 
                         className="faicons" 
