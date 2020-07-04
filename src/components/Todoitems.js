@@ -1,4 +1,5 @@
 import React from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 const Todoitems = (props) =>{
     if(props.items.length>0){
@@ -6,8 +7,14 @@ const Todoitems = (props) =>{
             return (
             <li 
                 key={item.key} 
-                onClick={()=>props.onClick(item.key)}
             >{item.name}
+            <span>
+                   <FontAwesomeIcon 
+                        className="faicons" 
+                        icon="trash" 
+                        onClick={()=>props.onClick(item.key)}
+                    />
+            </span>
             </li>)
             }
         )
